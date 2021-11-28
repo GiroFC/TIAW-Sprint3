@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cadastro de Formulário de Procastinação</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()">
+  <h1>Cadastro de Formulário de Procastinação</h1>
+
+  <div class="container">
+    <div class="row">
+      <div id="msg" class="col-sm-10 offset-sm-1 ">
+        <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+      </div>
+    </div>
+
+    <form id="form-contato">
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label for="inputId">Id</label>
+          <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
+        </div>
+        <div class="col-sm-8">
+          <label for="inputNome">Nome (*)</label>
+          <input type="text" class="form-control" id="inputNome" required placeholder="Informe o nome do contato">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-5">
+          <label for="inputIdade">Idade (*)</label>
+          <input type="text" class="form-control" id="inputIdade" required placeholder="Idade">
+        </div>
+        <div class="col-sm-7">
+          <label for="inputCidade">Cidade (*)</label>
+          <input type="text" class="form-control" id="inputCidade" required placeholder="Informe a sua cidade">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputCidade">Hobbies</label>
+          <input type="text" class="form-control" id="inputHobbies" placeholder="Informe seus hobbies">
+        </div>
+        <div class="col-sm-3">
+          <label for="inputEstuda">Estudos</label>
+          <input type="text" class="form-control" id="inputEstuda" required placeholder="Você estuda?">
+        </div>
+        <div class="col-sm-3">
+          <label for="inputTrabalha">Trabalho</label>
+          <input type="text" class="form-control" id="inputTrabalha" required placeholder="Você trabalha?">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputSonhos">Sonhos (*)</label>
+          <input type="text" class="form-control" id="inputSonhos" required placeholder="Qual o seu maior sonho?">
+        </div>
+        <div class="col-sm-3">
+          <label for="inputTempolivre">Tempo Livre (*)</label>
+          <input type="text" class="form-control" id="inputTempolivre" required
+            placeholder="Quanto tempo livre você possui?">
+        </div>
+        <div class="col-sm-3">
+          <label for="inputProcrastinador">Procastinador (*)</label>
+          <input type="text" class="form-control" id="inputProcastinador" required placeholder="Você se considera procrastinador?">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputMotivo">Motivo (*)</label>
+          <input type="text" class="form-control" id="inputMotivo" required placeholder="Com o que você mais procrastina?">
+        </div>
+        <div class="col-sm-6">
+          <label for="inputEscala">Escala (*)</label>
+          <input type="text" class="form-control" id="inputEscala" required
+            placeholder="Qual a escala que isso te afeta? (1 a 5)">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="inputApp">App (*)</label>
+          <input type="text" class="form-control" id="inputApp" required placeholder="Você conhece alguma aplicação que te ajuda a nao procrastinar?">
+        </div>
+        <div class="col-sm-6">
+          <label for="inputPerde">Atraso (*)</label>
+          <input type="text" class="form-control" id="inputPerde" required
+            placeholder="O que você considera que voce perde procrasinando além do tempo?">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <label for="inputSaberMotivo">Consciência (*)</label>
+          <input type="text" class="form-control" id="inputSaberMotivo" required placeholder="Você sabe o motivo de você procrastinar?">
+        </div>
+        <div class="col-sm-4">
+          <label for="inputCausa">Causa (*)</label>
+          <input type="text" class="form-control" id="inputCausa" required
+            placeholder="O que a procrastinação te causa?">
+        </div>
+        <div class="col-sm-4">
+          <label for="inputSolucao">Solução (*)</label>
+          <input type="text" class="form-control" id="inputSolucao" required
+            placeholder="Qual a solução que você acha que a resolveria?">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-4">
+          <small>(*) Campos obrigatórios</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="button" class="btn btn-success" id="btnInsert" value="Inserir">
+          <input type="button" class="btn btn-warning" id="btnUpdate" value="Alterar">
+          <input type="button" class="btn btn-danger" id="btnDelete" value="Excluir">
+          <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar Form">
+          <a href="lista_contatos.html"><input type="button" class="btn btn-warning" id="btnClear"
+              value="Pesquisar Contatos"></a>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table id="grid-contatos" class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Idade</th>
+              <th scope="col">Cidade</th>
+            </tr>
+          </thead>
+          <tbody id="table-contatos">
+            <tr>
+              <td scope="row">1</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function exibeContatos() {
+      // Remove todas as linhas do corpo da tabela
+      $("#table-contatos").html("");
+
+      // Popula a tabela com os registros do banco de dados
+      for (i = 0; i < db.data.length; i++) {
+        let contato = db.data[i];
+        $("#table-contatos").append(`<tr><td scope="row">${contato.id}</td>
+                                                <td>${contato.nome}</td>
+                                                <td>${contato.idade}</td>
+                                                <td>${contato.cidade}</td>
+                                            </tr>`);
+      }
+    }
+
+    function init() {
+      // Adiciona funções para tratar os eventos 
+      $("#btnInsert").click(function () {
+        // Verfica se o formulário está preenchido corretamente
+        if (!$('#form-contato')[0].checkValidity()) {
+          displayMessage("Preencha o formulário corretamente.");
+          return;
+        }
+
+        // Obtem os valores dos campos do formulário
+        let campoNome = $("#inputNome").val();
+        let campoIdade = $("#inputIdade").val();
+        let campoCidade = $('#inputCidade').val();
+        let campoHobbies = $("#inputHobbies").val();
+        let campoEstuda = $('#inputEstuda').val();
+        let campoTrabalha = $('#inputTrabalha').val();
+        let campoSonhos = $('#inputSonhos').val();
+        let campoTempolivre = $('#inputTempolivre').val();
+        let campoProcrastinador = $('#inputProcrastinador').val();
+        let campoMotivo = $('#inputMotivo').val();
+        let campoEscala = $('#inputEscala').val();
+        let campoApp = $('#inputApp').val();
+        let campoPerde = $('#inputPerde').val();
+        let campoSaberMotivo = $('#inputSaberMotivo').val();
+        let campoCausa = $('#inputCausa').val();
+        let campoSolucao = $('#inputSolucao').val();
+        let contato = {
+          nome: campoNome,
+          idade: campoIdade,
+          cidade: campoCidade,
+          hobbies: campoHobbies,
+          estuda: campoEstuda,
+          trabalha: campoTrabalha,
+          sonhos: campoSonhos,
+          tempolivre: campoTempolivre,
+          procrastinador: campoProcrastinador,
+          motivo: campoMotivo,
+          escala: campoEscala,
+          app: campoApp,
+          perde: campoPerde,
+          sabermotivo: campoSaberMotivo,
+          causa: campoCausa,
+          solucao: campoSolucao
+        };
+
+        insertContato(contato);
+
+        // Reexibe os contatos
+        exibeContatos();
+
+        // Limpa o formulario
+        $("#form-contato")[0].reset();
+      });
+
+      // Intercepta o click do botão Alterar
+      $("#btnUpdate").click(function () {
+        // Obtem os valores dos campos do formulário
+        let campoId = $("#inputId").val();
+        if (campoId == "") {
+          displayMessage("Selecione um contato para ser alterado.");
+          return;
+        }
+        let campoNome = $("#inputNome").val();
+        let campoIdade = $("#inputIdade").val();
+        let campoCidade = $('#inputCidade').val();
+        let campoHobbies = $("#inputHobbies").val();
+        let campoEstuda = $('#inputEstuda').val();
+        let campoTrabalha = $('#inputTrabalha').val();
+        let campoSonhos = $('#inputSonhos').val();
+        let campoTempolivre = $('#inputTempolivre').val();
+        let campoProcrastinador = $('#inputProcrastinador').val();
+        let campoMotivo = $('#inputMotivo').val();
+        let campoEscala = $('#inputEscala').val();
+        let campoApp = $('#inputApp').val();
+        let campoPerde = $('#inputPerde').val();
+        let campoSaberMotivo = $('#inputSaberMotivo').val();
+        let campoCausa = $('#inputCausa').val();
+        let campoSolucao = $('#inputSolucao').val();
+        let contato = {
+          nome: campoNome,
+          idade: campoIdade,
+          cidade: campoCidade,
+          hobbies: campoHobbies,
+          estuda: campoEstuda,
+          trabalha: campoTrabalha,
+          sonhos: campoSonhos,
+          tempolivre: campoTempolivre,
+          procrastinador: campoProcrastinador,
+          motivo: campoMotivo,
+          escala: campoEscala,
+          app: campoApp,
+          perde: campoPerde,
+          sabermotivo: campoSaberMotivo,
+          causa: campoCausa,
+          solucao: campoSolucao
+        };
+
+        updateContato(parseInt(campoId), contato);
+
+        // Reexibe os contatos
+        exibeContatos();
+
+        // Limpa o formulario
+        $("#form-contato")[0].reset();
+      });
+
+      // Intercepta o click do botão Excluir
+      $("#btnDelete").click(function () {
+        let campoId = $("#inputId").val();
+        if (campoId == "") {
+          displayMessage("Selecione um contato a ser excluído.");
+          return;
+        }
+        deleteContato(parseInt(campoId));
+
+        // Reexibe os contatos
+        exibeContatos();
+
+        // Limpa o formulario
+        $("#form-contato")[0].reset();
+      });
+
+      // Intercepta o click do botão Listar Contatos
+      $("#btnClear").click(function () {
+        $("#form-contato")[0].reset();
+      });
+
+      // Oculta a mensagem de aviso após alguns segundos
+      $('#msg').bind("DOMSubtreeModified", function () {
+        window.setTimeout(function () {
+          $(".alert").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+          });
+        }, 5000);
+      });
+
+      // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+      $("#grid-contatos").on("click", "tr", function (e) {
+        let linhaContato = this;
+        colunas = linhaContato.querySelectorAll("td");
+
+        $("#inputId").val(colunas[0].innerText);
+        $("#inputNome").val(colunas[1].innerText);
+        $("#inputIdade").val(colunas[2].innerText);
+        $("#inputCidade").val(colunas[3].innerText);
+        $("#inputHobbies").val(colunas[4].innerText);
+        $("#inputEstuda").val(colunas[5].innerText);
+        $("#inputTrabalha").val(colunas[6].innerText);
+        $("#inputSonhos").val(colunas[7].innerText);
+        $("#inputTempolivre").val(colunas[8].innerText);
+        $("#inputProcrastinador").val(colunas[10].innerText);
+        $("#inputMotivo").val(colunas[11].innerText);
+        $("#inputEscala").val(colunas[12].innerText);
+        $("#inputApp").val(colunas[13].innerText);
+        $("#inputPerde").val(colunas[14].innerText);
+        $("#inputSaberMotivo").val(colunas[15].innerText);
+        $("#inputCausa").val(colunas[16].innerText);
+        $("#inputSolucao").val(colunas[17].innerText);
+      });
+
+      exibeContatos();
+    }
+  </script>
+</body>
+
+</html>
